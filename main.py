@@ -44,7 +44,6 @@ saveQrCodeTouchBarButton = PyTouchBar.TouchBarItems.Button(title='Save QR Code',
 # place to show the QR Code
 qrCodeLabel = tkinter.Label(root)
 qrCodeLabel.grid(row=3, column=0, padx=10, pady=10, columnspan=2, sticky="n")
-qrCodeLabel.size = (300, 300)
 
 def generateQRCode():
     qr = qrcode.make(qrCodeTextVar.get())
