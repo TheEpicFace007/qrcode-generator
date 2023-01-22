@@ -2,9 +2,10 @@ import tkinter
 import tkinter.messagebox
 import qrcode
 from PIL import Image, ImageTk
-import PyTouchBar
-import tkinter.filedialog
 import sys
+if sys.platform == "darwin":
+    import PyTouchBar
+import tkinter.filedialog
 import os
 
 root = PyTouchBar.TouchBarTk()
@@ -39,7 +40,8 @@ def saveQrCode():
         )
     
 saveQrCodeButton.configure(command=saveQrCode)
-saveQrCodeTouchBarButton = PyTouchBar.TouchBarItems.Button(title='Save QR Code', action=lambda _: saveQrCode())
+if sys.platform == "darwin":
+    saveQrCodeTouchBarButton = PyTouchBar.TouchBarItems.Button(title='Save QR Code', action=lambda _: saveQrCode())
 
 # place to show the QR Code
 qrCodeLabel = tkinter.Label(root)
@@ -51,9 +53,11 @@ def generateQRCode():
     qrCodeLabel.image = ImageTk.PhotoImage(qr)
     qrCodeLabel.configure(image=qrCodeLabel.image)
 
-genQrCodeTouchBarBtn = PyTouchBar.TouchBarItems.Button(title="Generate QR Code", action=lambda _: generateQRCode())
+if sys.platform == "darwin":
+    genQrCodeTouchBarBtn = PyTouchBar.TouchBarItems.Button(title="Generate QR Code", action=lambda _: generateQRCode())
 genQrCodeButton.configure(command=generateQRCode)
 
-PyTouchBar.set_touchbar([genQrCodeTouchBarBtn, saveQrCodeTouchBarButton])
+if sys.platform == "darwin":
+    PyTouchBar.set_touchbar([genQrCodeTouchBarBtn, saveQrCodeTouchBarButton])
 
 root.mainloop()
