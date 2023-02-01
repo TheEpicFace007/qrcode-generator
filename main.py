@@ -8,7 +8,10 @@ if sys.platform == "darwin":
 import tkinter.filedialog
 import os
 
-root = PyTouchBar.TouchBarTk()
+if sys.platform == "darwin":
+    root = PyTouchBar.TouchBarTk()
+else:
+    root = tkinter.Tk()
 root.title("QR Code Generator")
 root.minsize(482, 132)
 
